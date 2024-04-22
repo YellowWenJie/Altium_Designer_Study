@@ -5,6 +5,24 @@
 > #####  [PCB布线基本规则](https://www.ebyte.com/new-view-info.aspx?id=890)
 >
 > ##### [20h](https://murata.eetrend.com/article/2019-11/1003161.html)
+>
+> > ##### 20H原则，在PCB设计的时候，为了体现20H原则，我们一般在平面层分割的时候，将电源层比地层内缩1mm就可以了。然后在1mm的内缩带打上屏蔽地过孔，150mil一个
+> >
+> > ![233739not8pxyr3q77psx7](https://p.ipic.vip/01wf3e.png)
+>
+> ##### [规则界面介绍](https://blog.csdn.net/qq_43460476/article/details/123464180)
+>
+> ##### [3W：它指的是两个PCB走线它们的中心间距不小于3倍线宽](https://blog.csdn.net/weixin_42693097/article/details/129540539)
+>
+> > ##### 3W原则，在PCB设计中很容易体现，保证走线与走线的中心间距为3倍的线宽即可，如走线的线宽为4.5mil，那么为了满足3W原则，在AD设置线到线的规则为9mil即可，那么中心距是13.5mil
+> >
+> > ![233724pgkbrrkm90rz3trp](https://p.ipic.vip/xw9rlj.png)
+>
+> ##### 如果在布线的时候网络太多太乱，可以设置电源类并关闭电源类的网络线
+>
+> > ![截屏2024-04-21 10.37.33](https://p.ipic.vip/m8vc8x.png)
+>
+> 
 
 # 软件名词
 
@@ -12,7 +30,19 @@ designator -> 丝印，位号
 
 ![IMG_4094](https://p.ipic.vip/75otn8.jpg)
 
-
+> ![截屏2024-04-21 11.40.43](https://p.ipic.vip/7n0pyl.png)
+>
+> Arc：圆弧
+> Track：走线
+> SMD Pad：表贴焊盘
+> TH Pad：通孔焊盘
+> Via：过孔
+> Fill：填充区块
+> Poly：覆铜
+> Region：逻辑区
+> Text：文本
+> Copper:铜皮
+> Hole: 孔
 
 # 软件配置
 
@@ -135,6 +165,13 @@ designator -> 丝印，位号
 > 22. ##### PCB中选择器件：J + C
 >
 > 23. ##### 元器件切换层：L
+>
+> 24. ##### 设置：T + P
+>
+> 25. ##### 设计规则检查：T + D
+>
+> 26. ##### 改变布线走线的角度：shift + 空格
+>
 
 # 布局规则
 
@@ -168,4 +205,109 @@ designator -> 丝印，位号
 
 1. 元器件与跳线帽柱子至少保持 3cm 的距离
 2. 电感和晶振下面不能走铜
+
+
+
+# 网络 Class 及规则设置
+
+> #####  信号线宽度一般 6mil 就能满足要求，电源线的宽度则需要满足它的载流
+
+##### 参考文献
+
+> ##### 间距规则设置
+>
+> > https://blog.csdn.net/luobeihai/article/details/123952325
+
+##### 电源类加粗（选中 Width 右键添加新规则）
+
+> ![截屏2024-04-21 10.48.20](https://p.ipic.vip/75fj2h.png)
+>
+> ###### 电源类首选 20mil，最小 10mil， 最大 100mil。
+>
+> ![截屏2024-04-22 21.48.55](https://p.ipic.vip/tzjkk6.png)
+
+##### 间距规则（[3W原则&10W原则]()）
+
+##### 3W原则
+
+> ##### 3W原则，在PCB设计中很容易体现，保证走线与走线的中心间距为3倍的线宽即可，如走线的线宽为4.5mil，那么为了满足3W原则，在AD设置线到线的规则为9mil即可，那么中心距是13.5mil
+>
+> ![233724pgkbrrkm90rz3trp](https://p.ipic.vip/xw9rlj.png)
+
+##### 布线冲突解决方案
+
+> Interactive Routing 选项卡
+> 走线设置是比较重要的设置
+> 第一个区块为布线冲突解决方案：
+> 1：Ignore Obstacles：忽略障碍物走线
+> 2：Push Obstacles：推荐障碍物走线
+> 3：Walkaround Obstacles：围绕障碍物走线
+> 4：Stop At First Obstacle：遇到障碍物即停止走线
+> 5：AutoRoute On Current Layer：自动布线时在当前层走线。
+> 6：AutoRoute On Multiple Layer：自动布线时在表层或内层走线。（用途不大，可以取消勾选）
+> 以上走线模式在布线时可以使用快捷键Shift + R进行切换
+> 第二个区块Interactive Routing Options
+> 1：Automatically Remove Loops：自动移除回路
+> 2：Remove NET Antennas：移除Stub线头（不封闭连线，除了天线其余时候不应有。）
+> 3：Allow Via Pushing：允许过孔的推挤。
+> 4：Display Clearance Boundaries：走线保护边界显示
+> 5：Reduce Clearance Display Area：减小保护边界的显示
+> 第三个区块Dragging
+> 1：Ignore Obstacles：拖动状态忽略障碍物
+> Avoid Obstacles(Snap Grid)：按照格点躲避障碍物。
+> 2：Unselected via/track-Move：对于没有选择的过孔和导线拖动时只进行移动。
+> 3：Selected via/track-Drag：对于被选中了的过孔和导线拖动时进行拖拽和鼠标一起移动。
+> 4：Component pushing-Ignore：元件拖动时忽略障碍物。
+
+##### Room 使用（设置room后，在room区域内会按照room设计规则走线）
+
+> ![截屏2024-04-22 21.37.56](https://p.ipic.vip/5rd04o.png)
+>
+> ##### 新建规则
+>
+> ![截屏2024-04-22 21.41.01](https://p.ipic.vip/dxo2mt.png)
+>
+> ##### 在输入框中输入 WithinRoom(‘创建room的名字’)
+>
+> ![截屏2024-04-22 21.43.09](https://p.ipic.vip/afeucv.png)
+
+##### 过孔规则
+
+> ##### 特别密：4/10
+>
+> ##### 如果比较密： 8/16±2（8/14 || 8/ 16  || 8/18）
+>
+> ##### 板子空间还好的： 10/20±2（10/18 || 10/20 || 10/22）
+>
+> ##### 板子空间特别稀疏：12/24±2（12/22 || 12/24 || 12/26）
+>
+> 
+
+> ![截屏2024-04-22 22.00.34](https://p.ipic.vip/b5bct2.jpg)
+>
+> ##### 如果设置没效果则可以去设置里设置
+>
+> ![截屏2024-04-22 22.00.14](https://p.ipic.vip/3mm2kw.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
