@@ -440,3 +440,16 @@ designator -> 丝印，位号
 > ![截屏2024-04-28 15.50.18](https://p.ipic.vip/ulxpbg.png)
 
 # DRC 的设置与检查
+
+T + D 然后点击运行 DRC
+
+> ##### 更好的显示 DRC 错误
+>
+> ![截屏2024-05-01 20.19.06](https://p.ipic.vip/v2ywql.jpg)
+>
+> ##### 点击 DRC 的错误会显示违规详细
+>
+> ![截屏2024-05-01 20.20.22](https://p.ipic.vip/gwh9ms.png)
+
+# PCD 拼板及生产资料整理
+
